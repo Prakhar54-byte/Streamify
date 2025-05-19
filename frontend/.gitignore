@@ -7,6 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+
+
 node_modules
 dist
 dist-ssr
@@ -16,6 +18,8 @@ dist-ssr
 .env.*
 
 package-lock.json
+
+
 
 # Editor directories and files
 .vscode/*

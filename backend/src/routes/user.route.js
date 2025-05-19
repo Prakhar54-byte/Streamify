@@ -13,7 +13,7 @@ router.get("/friends",getMyFriends)
 
 router.post("/friend-request/:id",sendFreindRequest)
 router.put("/freind-request/:id/accept",acceptFriendRequest)
-router.put("/freind-request/:id/reject",rejectFriendRequest)
+// router.put("/freind-request/:id/reject",rejectFriendRequest)
 
 router.get("/friend-request",getFriendRequests)
 router.get("/outgoing-friend-requests", getOutgoingFriendRequests)
