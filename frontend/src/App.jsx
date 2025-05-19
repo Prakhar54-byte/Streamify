@@ -11,7 +11,7 @@ import OnBoardingPage from './pages/OnBoardingPage.jsx';
 import { Toaster } from 'react-hot-toast';
 import PageLoader from './components/PageLoader.jsx';
 import useAuthUser from './hooks/useAuthUser.js';
-
+import Layout from './components/Layout.jsx';
 function App() {
   const { isLoading,authUser }=useAuthUser()
 
@@ -30,7 +30,11 @@ function App() {
     <div className="h-screen " data-theme="dracula">
       
           <Routes>
-            <Route path="/" element={isAuthnticated  && isOnboarded?<HomePage />: (
+            <Route path="/" element={isAuthnticated  && isOnboarded?(<Layout showSidebar={true}>
+              <HomePage />
+              </Layout>)
+            :
+             (
               <Navigate to={!isAuthnticated ? "/login" : "/onboarding"} />
             )} />
             <Route path="/signup" element={!isAuthnticated ?<SignUpPage />: <Navigate to={
