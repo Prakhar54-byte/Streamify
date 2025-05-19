@@ -26,7 +26,7 @@ function SignUpPage() {
 // })
 
   // const{ isPending,error,signupMutation} = useSignup()
-  const { mutate: signupMutation, isPending, error } = useSignup();
+  const {  signupMutation, isPending, error } = useSignup();
 
   const hadleSignup = async (e)=>{
     e.preventDefault()

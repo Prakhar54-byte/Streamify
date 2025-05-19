@@ -6,8 +6,10 @@ function useAuthUser() {
   const authUser= useQuery({
      queryKey:["authUser"],
  
-     queryFn:getAuthUser    
-   })
+     queryFn:getAuthUser    ,
+     retry:false
+    },
+  )
 
     return {isLoading:authUser.isLoading,
     authUser:authUser.data?.user}

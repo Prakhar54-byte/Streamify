@@ -139,15 +139,27 @@ export async function login(req,res){
         
     }
 }
-export async function logout(req,res){
-    res.send("logout  World")
+export async function logout(req, res) {
+    try {
+        res.clearCookie("jwt", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+        });
 
-    res.clearCookie("jwt")
-    res.status(200).json({
-        success:true,
-       message:"LogOut successful" 
-    })
+        return res.status(200).json({
+            success: true,
+            message: "Logout successful",
+        });
+    } catch (error) {
+        console.error("Logout error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong during logout.",
+        });
+    }
 }
+
 
 export async function onboard(req,res){
     console.log(req.user)

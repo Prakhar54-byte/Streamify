@@ -30,7 +30,7 @@ const Sidebar = () => {
         </Link>
 
         <Link
-          to="/friends"
+          to="/api/users/friends"
           className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${
             currentPath === "/friends" ? "btn-active" : ""
           }`}
@@ -55,7 +55,7 @@ const Sidebar = () => {
         <div className="flex items-center gap-3">
           <div className="avatar">
             <div className="w-10 rounded-full">
-              <img src={authUser?.profilePic} alt="User Avatar" />
+              <img src={authUser?.profilePicture} alt="User Avatar" />
             </div>
           </div>
           <div className="flex-1">
