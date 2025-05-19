@@ -5,11 +5,12 @@ import { protectRoute } from '../middleware/auth.middleware.js';
 
 const router = express.Router()
 
+// TODO : add forgot password and reset password routes
+// TODO : add email verification and resend email verification routes
+// TODO : add social login routes
 
 router.post("/signup", signup)
-
 router.post("/login", login)
-
 router.post("/logout",logout)
 
 router.post("/onboarding",protectRoute,onboard)
