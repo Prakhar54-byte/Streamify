@@ -9,8 +9,26 @@ import CallPage from './pages/CallPage.jsx';
 import OnBoardingPage from './pages/OnBoardingPage.jsx';
 
 import { Toaster } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import { axiosInstance } from './lib/axios.js';
 
 function App() {
+
+
+  const {data,isLoading,error,refetch} = useQuery({
+    queryKey:["todos"],
+
+    queryFn:async()=>{
+      const res = await axiosInstance.get("/auth/me",)
+      return res.data
+    }
+  })
+  console.log("data",{data});
+  console.log("isLoading",{isLoading});
+  console.log("error",{error});
+  console.log("refetch",{refetch});
+
+  
   return (
     <div className="h-screen " data-theme="dracula">
       
