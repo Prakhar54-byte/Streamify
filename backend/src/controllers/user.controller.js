@@ -14,7 +14,10 @@ export async function getRecommendedUsers(req,res) {
             ]
 
         })
-        res.status(200).json(recommendedeUser)
+        res.status(200).json({
+            message:"Recommended users",
+            users:recommendedeUser
+        })
     } catch (error) {
         console.log("Error in getRecommendedUsers controller",error.message);
         return res.status(500).json({
@@ -33,7 +36,9 @@ export async function getMyFriends(req,res){
         .populate("friends","fullName profilePicture nativeLanguage learnLanguage");
 
 
-        res.status(200).json(user.friends)
+        res.status(200).json({user:user.friends,
+            message:"My friends"
+        })
     } catch (error) {
           console.log("Error in getMyFriends  controller",error.message);
         return res.status(500).json({
@@ -161,6 +166,7 @@ export async function getFriendRequests(req,res){
         }).populate("recipient","fullName profilePicture nativeLanguage learnLanguage")
 
         res.status(200).json({
+            message:"Friend requests",
             incomingRequests,
             acceptedRequest
         })
@@ -178,6 +184,10 @@ export async function getOutgoingFriendRequests(req,res){
             sender:req.user.id,
             status:"pending"
         }).populate("recipient","fullName profilePicture nativeLanguage learnLanguage")
+        res.status(200).json({
+            message:"Outgoing friend requests",
+            outgoingRequest
+        })
     } catch (error) {
         console.log("Error in getOutgoingFriendRequests controller",error.message); 
         res.status(500).json({
