@@ -61,7 +61,6 @@ Streamify is a feature-rich web application designed to connect language learner
    STREAM_API_KEY=your_stream_api_key
    STREAM_API_SECRET=your_stream_api_secret
    JWT_SECRET_KEY=your_jwt_secret
-   NODE_ENV=development
    ```
 
 4. Start the server:
