@@ -29,6 +29,7 @@
     "express-session": "^1.18.1",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
+    "lusca": "^1.7.0",
     "mongoose": "^8.13.2",
     "stream-chat": "^8.60.0"
   },
@@ -41,5 +42,8 @@
   },
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "resolutions": {
+  "cookie": "^0.7.0"
+}
 }

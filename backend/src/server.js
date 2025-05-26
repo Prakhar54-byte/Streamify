@@ -3,6 +3,7 @@ import "dotenv/config";
 import cookieParser from "cookie-parser"
 import session from 'express-session';
 import csurf from 'csurf';
+import lusca from 'lusca';
 
 import authRoutes from './routes/auth.route.js';
 import userRoutes from './routes/user.route.js';
@@ -13,6 +14,8 @@ import { connectDB } from './lib/db.js';
 import cors from 'cors';
 
 const app = express()
+
+app.use(lusca.csrf())
 
 app.disable('x-powered-by');// Disable the 'X-Powered-By' header for security reasons
 
