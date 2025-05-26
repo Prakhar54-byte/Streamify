@@ -15,9 +15,21 @@ export async function signup(req,res){
 if (!emailRegex.test(email)) {
     return res.status(400).json({ message: "Invalid email format" });
 }
+    // First check if password exists
+if (!password) {
+    return res.status(400).json({
+        message: "Password is required"
+    });
+}
 
+// Check type - ensure password is a string
+if (typeof password !== 'string') {
+    return res.status(400).json({
+        message: "Password must be a string"
+    });
+}
 
-    if(password.length< 6){
+    if(password.length< 6){// check password is number
         return res.status(400).json({
             message:"Password must be at least 6 character"
         })
