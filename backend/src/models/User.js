@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
         ref: 'User',
         default: [],
     }],
-},{timeseries:true});
+},{timestamps:true});
 // CreatedAt , updatedAt
 
 

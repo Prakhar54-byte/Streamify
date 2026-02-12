@@ -1,30 +1,43 @@
 import { Link } from "react-router";
 import { LANGUAGE_TO_FLAG } from "../constants";
 
-const FriendCard = ({ friend }) => {
+const FriendCard = ({ friend, isOnline = false }) => {
   return (
-    <div className="card bg-base-200 hover:shadow-md transition-shadow">
+    <div className="card bg-base-200/60 card-hover rounded-xl border border-base-content/5 animate-fade-in">
       <div className="card-body p-4">
-        {/* USER INFO */}
+        {/* User Info */}
         <div className="flex items-center gap-3 mb-3">
-          <div className="avatar size-12">
-            <img src={friend.profilePicture} alt={friend.fullName} />
+          <div className="relative">
+            <div className="avatar">
+              <div className="w-12 rounded-full ring-2 ring-primary/20">
+                <img src={friend.profilePicture} alt={friend.fullName} />
+              </div>
+            </div>
+            <span className={`absolute bottom-0 right-0 ${isOnline ? 'online-dot' : 'offline-dot'}`} />
           </div>
-          <h3 className="font-semibold truncate">{friend.fullName}</h3>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold truncate">{friend.fullName}</h3>
+            <span className={`text-xs ${isOnline ? 'text-success' : 'opacity-50'}`}>
+              {isOnline ? 'Online' : 'Offline'}
+            </span>
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-3">
-          <span className="badge badge-secondary text-xs">
+          <span className="badge badge-secondary badge-sm gap-1">
             {getLanguageFlag(friend.nativeLanguage)}
             Native: {friend.nativeLanguage}
           </span>
-          <span className="badge badge-outline text-xs">
+          <span className="badge badge-outline badge-sm gap-1">
             {getLanguageFlag(friend.learningLanguage)}
             Learning: {friend.learningLanguage}
           </span>
         </div>
 
-        <Link to={`/chat/${friend._id}`} className="btn btn-outline w-full">
+        <Link
+          to={`/chat/${friend._id}`}
+          className="btn btn-outline btn-sm w-full rounded-lg hover:btn-primary transition-all duration-300"
+        >
           Message
         </Link>
       </div>
@@ -44,7 +57,7 @@ export function getLanguageFlag(language) {
       <img
         src={`https://flagcdn.com/24x18/${countryCode}.png`}
         alt={`${langLower} flag`}
-        className="h-3 mr-1 inline-block"
+        className="h-3 mr-0.5 inline-block"
       />
     );
   }

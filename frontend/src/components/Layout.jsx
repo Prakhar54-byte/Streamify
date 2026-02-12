@@ -1,21 +1,20 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
-function Layout({children,showSidebar=false}) {
+function Layout({ children, showSidebar = false }) {
   return (
-    <div className='min-h-screen'>
-      <div className='flex flex-col'>
-        {showSidebar && <Sidebar/>}
-        <div className='flex-1 flex flex-col'>
-          <Navbar/>
-          <main className='flex-1 overflow-y-auto'>
+    <div className="min-h-screen gradient-bg">
+      <div className="flex">
+        {showSidebar && <Sidebar />}
+        <div className="flex-1 flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-1 overflow-y-auto">
             {children}
           </main>
-          </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

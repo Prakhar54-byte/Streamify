@@ -31,7 +31,8 @@
     "jsonwebtoken": "^9.0.2",
     "lusca": "^1.7.0",
     "mongoose": "^8.13.2",
-    "stream-chat": "^8.60.0"
+    "stream-chat": "^8.60.0",
+    "ioredis": "^5.4.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
@@ -42,8 +43,5 @@
   },
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "resolutions": {
-  "cookie": "^0.7.0"
-}
+  "type": "module"
 }

@@ -1,101 +1,94 @@
-import React from 'react'
+import { useState } from 'react';
 import { ShipWheelIcon } from "lucide-react";
 import { Link } from "react-router";
 import useLogin from '../hooks/useLogin';
 
 function LoginPage() {
-
-  const [logInData, setLoginData] = React.useState({
+  const [logInData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  // const queryClient = useQueryClient()
-
-  // const {
-  //   mutate:loginMutation,
-  //   isPending,
-  //   error,
-
-  // }= useMutation({
-  //   mutationFn:login,
-  //   onSuccess: (data) => {
-  //     queryClient.setQueryData(["authUser"], data)
-  //   },
-    
-  // })
-
-  const {isPending,error,loginMutation}=useLogin()
+  const { isPending, error, loginMutation } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginMutation(logInData)
-  }
-  return (    <div
-      className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
-      data-theme="forest"
-    >
-      <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
-        {/* LOGIN FORM SECTION */}
-        <div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
-          {/* LOGO */}
-          <div className="mb-4 flex items-center justify-start gap-2">
-            <ShipWheelIcon className="size-9 text-primary" />
-            <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
+    loginMutation(logInData);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8 auth-bg" data-theme="forest">
+      <div className="glass-card flex flex-col lg:flex-row w-full max-w-5xl mx-auto rounded-2xl shadow-2xl overflow-hidden animate-slide-up">
+        {/* Login Form Section */}
+        <div className="w-full lg:w-1/2 p-6 sm:p-10 flex flex-col justify-center">
+          {/* Logo */}
+          <div className="mb-8 flex items-center justify-start gap-3">
+            <div className="p-2 rounded-xl gradient-primary shadow-lg">
+              <ShipWheelIcon className="size-8 text-primary-content" />
+            </div>
+            <span className="text-3xl font-extrabold tracking-tight gradient-text">
               Streamify
             </span>
           </div>
 
-          {/* ERROR MESSAGE DISPLAY */}
+          {/* Error Message */}
           {error && (
-            <div className="alert alert-error mb-4">
-              <span>{error.response.data.message}</span>
+            <div className="alert alert-error mb-6 rounded-xl animate-fade-in">
+              <span>{error.response?.data?.message || "An error occurred"}</span>
             </div>
           )}
 
           <div className="w-full">
             <form onSubmit={handleSubmit}>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div>
-                  <h2 className="text-xl font-semibold">Welcome Back</h2>
-                  <p className="text-sm opacity-70">
-                    Sign in to your account to continue your language journey
+                  <h2 className="text-2xl font-bold">Welcome Back</h2>
+                  <p className="text-sm opacity-60 mt-1">
+                    Sign in to continue your language learning journey
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  <div className="form-control w-full space-y-2">
+                <div className="space-y-4">
+                  <div className="form-control w-full">
                     <label className="label">
-                      <span className="label-text">Email</span>
+                      <span className="label-text font-medium">Email</span>
                     </label>
-                    <input
-                      type="email"
-                      placeholder="hello@example.com"
-                      className="input input-bordered w-full"
-                      value={logInData.email}
-                      onChange={(e) => setLoginData({ ...logInData, email: e.target.value })}
-                      required
-                    />
+                    <div className="input-glow rounded-xl">
+                      <input
+                        type="email"
+                        placeholder="hello@example.com"
+                        className="input input-bordered w-full rounded-xl"
+                        value={logInData.email}
+                        onChange={(e) => setLoginData({ ...logInData, email: e.target.value })}
+                        required
+                      />
+                    </div>
                   </div>
 
-                  <div className="form-control w-full space-y-2">
+                  <div className="form-control w-full">
                     <label className="label">
-                      <span className="label-text">Password</span>
+                      <span className="label-text font-medium">Password</span>
                     </label>
-                    <input
-                      type="password"
-                      placeholder="••••••••"
-                      className="input input-bordered w-full"
-                      value={logInData.password}
-                      onChange={(e) => setLoginData({ ...logInData, password: e.target.value })}
-                      required
-                    />
+                    <div className="input-glow rounded-xl">
+                      <input
+                        type="password"
+                        placeholder="••••••••"
+                        className="input input-bordered w-full rounded-xl"
+                        value={logInData.password}
+                        onChange={(e) => setLoginData({ ...logInData, password: e.target.value })}
+                        required
+                      />
+                    </div>
                   </div>
 
-                  <button type="submit" className="btn btn-primary w-full" disabled={isPending}>
+                  <button
+                    type="submit"
+                    className="btn btn-primary w-full rounded-xl text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                    disabled={isPending}
+                  >
                     {isPending ? (
                       <>
-                        <span className="loading loading-spinner loading-xs"></span>
+                        <span className="loading loading-spinner loading-sm"></span>
                         Signing in...
                       </>
                     ) : (
@@ -103,10 +96,10 @@ function LoginPage() {
                     )}
                   </button>
 
-                  <div className="text-center mt-4">
-                    <p className="text-sm">
+                  <div className="text-center mt-6">
+                    <p className="text-sm opacity-70">
                       Don't have an account?{" "}
-                      <Link to="/signup" className="text-primary hover:underline">
+                      <Link to="/signup" className="text-primary font-semibold hover:underline">
                         Create one
                       </Link>
                     </p>
@@ -117,26 +110,27 @@ function LoginPage() {
           </div>
         </div>
 
-        {/* IMAGE SECTION */}
-        <div className="hidden lg:flex w-full lg:w-1/2 bg-primary/10 items-center justify-center">
-          <div className="max-w-md p-8">
-            {/* Illustration */}
-            <div className="relative aspect-square max-w-sm mx-auto">
-              <img src="/si.png" alt="Language connection illustration" className="w-full h-full" />
+        {/* Illustration Section */}
+        <div className="hidden lg:flex w-full lg:w-1/2 bg-primary/5 items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+          <div className="max-w-md p-8 relative z-10">
+            <div className="relative aspect-square max-w-sm mx-auto animate-float">
+              <img src="/si.png" alt="Language connection illustration" className="w-full h-full drop-shadow-lg" />
             </div>
 
-            <div className="text-center space-y-3 mt-6">
-              <h2 className="text-xl font-semibold">Connect with language partners worldwide</h2>
-              <p className="opacity-70">
-                Practice conversations, make friends, and improve your language skills together
+            <div className="text-center space-y-3 mt-8">
+              <h2 className="text-xl font-bold">
+                Connect with language partners worldwide
+              </h2>
+              <p className="opacity-60 text-sm leading-relaxed">
+                Practice conversations, make friends, and improve your language skills through real-time video calls
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;
